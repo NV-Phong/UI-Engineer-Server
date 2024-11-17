@@ -1,6 +1,5 @@
-import { Controller, Get } from '@nestjs/common';
+import { Body, Controller, Get } from '@nestjs/common';
 import { ApiGatewayService } from './api-gateway.service';
-
 @Controller()
 export class ApiGatewayController {
    constructor(private readonly authservice: ApiGatewayService) {}
@@ -9,4 +8,5 @@ export class ApiGatewayController {
    getHello() {
       return this.authservice.send('GET-hello', {});
    }
+
 }

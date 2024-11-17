@@ -15,7 +15,7 @@ async function bootstrap() {
    });
    await app.startAllMicroservices();
    Logger.log('🚀 Auth-Service is running 🚀');
-   
+
    if (module.hot) {
       module.hot.accept();
       module.hot.dispose(() => app.close());
