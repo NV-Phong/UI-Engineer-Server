@@ -4,7 +4,7 @@ import { MessagePattern } from '@nestjs/microservices';
 import { JwtAuthGuard } from './configuration/jwt-auth.guard';
 
 @Controller()
-@UseGuards(JwtAuthGuard)
+// @UseGuards(JwtAuthGuard)
 export class AuthServiceController {
    constructor(private readonly authServiceService: AuthServiceService) {}
 

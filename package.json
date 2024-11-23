@@ -6,6 +6,10 @@
    "private": true,
    "license": "UNLICENSED",
    "scripts": {
+      "uie-api-gateway": "nest build --webpack --webpackPath webpack-hmr.config.js --watch",
+      "uie-auth-service": "nest build --webpack --webpackPath webpack-hmr.config.js --watch auth-service",
+      "ui-engineer": "concurrently -c \"blue.bold,magenta.bold\" \"npm:uie-*",
+
       "build": "nest build",
       "format": "prettier --write \"apps/**/*.ts\" \"libs/**/*.ts\"",
       "start": "nest start",
@@ -30,6 +34,7 @@
       "@nestjs/passport": "^10.0.3",
       "@nestjs/platform-express": "^10.0.0",
       "bcrypt": "^5.1.1",
+      "concurrently": "^9.1.0",
       "ioredis": "^5.4.1",
       "mongoose": "^8.8.1",
       "passport": "^0.7.0",
