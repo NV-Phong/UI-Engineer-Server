@@ -8,6 +8,7 @@ import { RpcException } from '@nestjs/microservices';
 import { JwtService } from '@nestjs/jwt';
 import { UserService } from '../user/user.service';
 import { LoginDTO } from './dto/login.dto';
+import axios from 'axios';
 
 @Injectable()
 export class AuthService {
@@ -36,16 +37,26 @@ export class AuthService {
          });
       }
 
-      const HashedPassword = await bcrypt.hash(registerDTO.password, 10);
-      await new this.usermodel({
-         ...registerDTO,
-         password: HashedPassword,
-      }).save();
+      if (!registerDTO.username || !registerDTO.password) {
+         throw new RpcException({
+            message: !registerDTO.username
+               ? 'Username is required'
+               : 'Password is required',
+            statusCode: HttpStatus.BAD_REQUEST,
+         });
+      } else {
+         const HashedPassword = await bcrypt.hash(registerDTO.password, 10);
 
-      return {
-         message: 'User registered successfully',
-         user: { username: registerDTO.username, email: registerDTO.email },
-      };
+         await new this.usermodel({
+            ...registerDTO,
+            password: HashedPassword,
+         }).save();
+
+         return {
+            message: 'User registered successfully',
+            user: { username: registerDTO.username, email: registerDTO.email },
+         };
+      }
    }
 
    GenerateAccessToken(user: User) {
@@ -95,5 +106,34 @@ export class AuthService {
             error: error,
          });
       }
+   }
+
+   async GithubLoginOrCreate(githubToken: TokenResponse) {
+      const { data: user } = await axios.get(process.env.GITHUB_API_USER, {
+         headers: { Authorization: `Bearer ${githubToken.access_token}` },
+      });
+
+      let GithubUser = await this.usermodel.findOne({
+         githubID: user.id,
+      });
+
+      if (!GithubUser) {
+         GithubUser = new this.usermodel({
+            GithubAccessToken: githubToken.access_token,
+            githubID: user.id,
+            username: user.login,
+            displayname: user.name,
+            email: user.email,
+         });
+         await GithubUser.save();
+      }
+
+      const AccessToken = this.GenerateAccessToken(GithubUser);
+      const RefreshToken = this.GenerateRefreshToken(GithubUser);
+
+      return {
+         access_token: AccessToken,
+         refresh_token: RefreshToken,
+      };
    }
 }

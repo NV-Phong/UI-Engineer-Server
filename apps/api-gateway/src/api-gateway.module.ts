@@ -8,7 +8,10 @@ import { AuthModule } from './auth/auth.module';
 @Module({
    imports: [
       ConfigModule.forRoot({
-         envFilePath: ['apps/api-gateway/.env'],
+         envFilePath: [
+            'apps/api-gateway/.env.development',
+            'apps/api-gateway/.env',
+         ],
          isGlobal: true,
       }),
       AuthModule,

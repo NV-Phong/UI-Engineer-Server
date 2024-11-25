@@ -7,7 +7,7 @@ export class User {
    @Prop({ required: true, unique: true })
    username: string;
 
-   @Prop({ required: true })
+   @Prop()
    password: string;
 
    @Prop({ unique: true })
@@ -15,6 +15,12 @@ export class User {
 
    @Prop()
    displayname: string;
+
+   @Prop({ unique: true })
+   githubID: string;
+
+   @Prop()
+   GithubAccessToken: string;
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);

@@ -1,8 +1,15 @@
-import { Body, Controller, Post } from '@nestjs/common';
+import {
+   Body,
+   Controller,
+   Get,
+   Post,
+   Req,
+   UseGuards,
+} from '@nestjs/common';
 import { RegisterDTO } from './dto/register.dto';
 import { ApiGatewayService } from '../api-gateway.service';
 import { LoginDTO } from './dto/login.dto';
-import { Payload } from '@nestjs/microservices';
+import { GithubAuthGuard } from 'apps/api-gateway/src/configuration/github-auth.guard';
 
 @Controller('auth')
 export class AuthController {
@@ -16,6 +23,16 @@ export class AuthController {
    @Post('login')
    Login(@Body() loginDTO: LoginDTO) {
       return this.authservice.send('POST-login', loginDTO);
+   }
+
+   @Get('github')
+   @UseGuards(GithubAuthGuard)
+   LoginGithub() {}
+
+   @Get('github/callback')
+   @UseGuards(GithubAuthGuard)
+   LoginGithubCallBack(@Req() req) {
+      return this.authservice.send('POST-login-github', req.user);
    }
 
    @Post('refresh-token')
