@@ -1,4 +1,4 @@
-import { Controller } from '@nestjs/common';
+import { Controller, Req } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { MessagePattern, Payload } from '@nestjs/microservices';
 import { RegisterDTO } from './dto/register.dto';
@@ -23,7 +23,7 @@ export class AuthController {
       return await this.authservice.RefreshAccessToken(refresh_token);
    }
 
-   @MessagePattern('POST-login-github')
+   @MessagePattern('GET-login-github')
    async GithubLogin(@Payload() githubToken: TokenResponse) {
       return this.authservice.GithubLoginOrCreate(githubToken);
    }

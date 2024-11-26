@@ -1,6 +1,8 @@
-import { Body, Controller, Get } from '@nestjs/common';
+import { Body, Controller, Get, UseGuards } from '@nestjs/common';
 import { ApiGatewayService } from './api-gateway.service';
+import { AuthGuard } from '@nestjs/passport';
 @Controller()
+@UseGuards(AuthGuard('jwt'))
 export class ApiGatewayController {
    constructor(private readonly authservice: ApiGatewayService) {}
 
