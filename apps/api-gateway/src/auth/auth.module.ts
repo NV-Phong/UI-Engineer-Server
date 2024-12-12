@@ -4,7 +4,6 @@ import { GithubStrategy } from 'apps/api-gateway/src/configuration/github.strate
 import { JwtStrategy } from 'apps/api-gateway/src/configuration/jwt.strategy';
 import { AuthController } from './auth.controller';
 import { ApiGatewayService } from '../api-gateway.service';
-import { GithubAuthGuard } from '../configuration/github-auth.guard';
 @Module({
    imports: [
       JwtModule.register({

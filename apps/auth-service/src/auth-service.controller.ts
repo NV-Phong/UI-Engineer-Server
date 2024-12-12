@@ -8,7 +8,7 @@ import { AuthGuard } from '@nestjs/passport';
 export class AuthServiceController {
    constructor(private readonly authServiceService: AuthServiceService) {}
 
-   @MessagePattern('GET-hello')
+   @MessagePattern('GET-hello-auth')
    getHello(): string {
       return this.authServiceService.getHello();
    }
