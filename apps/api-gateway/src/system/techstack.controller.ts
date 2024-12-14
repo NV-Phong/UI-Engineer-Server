@@ -5,6 +5,7 @@ import {
    UseGuards,
    Request,
    Get,
+   Param,
 } from '@nestjs/common';
 import { ApiGatewayService } from '../api-gateway.service';
 import { AuthGuard } from '@nestjs/passport';
@@ -18,5 +19,9 @@ export class TechStackController {
    @Post()
    CreateTeam(@Body() createtechstackDTO: CreateTechStackDTO) {
       return this.techstackservice.send('POST-techstack', createtechstackDTO);
+   }
+   @Get(':id')
+   SearchByIDTechStack(@Param('id') id: string) {
+      return this.techstackservice.send('GET-techstack-byID', id);
    }
 }

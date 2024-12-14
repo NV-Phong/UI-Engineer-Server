@@ -11,4 +11,9 @@ export class TechstackController {
    async CreateNewTechStack(@Payload() createtechstackDTO: CreateTechStackDTO) {
       return await this.techstackservice.CreateTechStack(createtechstackDTO);
    }
+
+   @MessagePattern('GET-techstack-byID')
+   async SearchByIDTechStack(@Payload() id: string) {
+      return await this.techstackservice.findTechStackByID(id);
+   }
 }

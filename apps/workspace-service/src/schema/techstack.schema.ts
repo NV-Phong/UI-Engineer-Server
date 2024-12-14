@@ -4,18 +4,17 @@ export type TechStackDocument = TechStack & Document;
 
 @Schema()
 export class TechStack {
-  @Prop()
-  technology: string;
+   @Prop({ unique: true })
+   technology: string;
 
-  @Prop()
-  version: string;
+   @Prop()
+   version: string;
 
-  @Prop()
-  techDescription: string;
+   @Prop()
+   techDescription: string;
 
-  @Prop()
-  isDeleted: boolean;
-
+   @Prop()
+   isDeleted: boolean;
 }
 
 export const TechStackSchema = SchemaFactory.createForClass(TechStack);

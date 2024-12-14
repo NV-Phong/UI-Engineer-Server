@@ -6,9 +6,11 @@ import { TechStack, TechStackSchema } from '../schema/techstack.schema';
 
 @Module({
    imports: [
-      MongooseModule.forFeature([{ name: TechStack.name, schema: TechStackSchema }]),
+      MongooseModule.forFeature([
+         { name: TechStack.name, schema: TechStackSchema },
+      ]),
    ],
-  providers: [TechstackService],
-  controllers: [TechstackController]
+   providers: [TechstackService],
+   controllers: [TechstackController],
 })
 export class TechstackModule {}
