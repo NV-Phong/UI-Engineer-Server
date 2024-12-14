@@ -11,7 +11,7 @@ export class TeamService {
    ) {}
 
    async CreateTeam(createTeamDTO: CreateTeamDTO): Promise<Team> {
-      const createdTeam = new this.teamModel({
+      return await new this.teamModel({
          ...createTeamDTO,
          isDeleted: false,
          members: createTeamDTO.members.map((member) => ({
@@ -19,8 +19,6 @@ export class TeamService {
             leader: true,
             joinedAt: new Date(),
          })),
-      });
-
-      return createdTeam.save();
+      }).save();
    }
 }

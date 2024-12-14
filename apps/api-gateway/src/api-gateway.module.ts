@@ -4,6 +4,7 @@ import { ApiGatewayService } from './api-gateway.service';
 import { ConfigModule } from '@nestjs/config';
 import { AuthModule } from './auth/auth.module';
 import { WorkspaceModule } from './workspace/workspace.module';
+import { SystemModule } from './system/system.module';
 
 @Module({
    imports: [
@@ -16,6 +17,7 @@ import { WorkspaceModule } from './workspace/workspace.module';
       }),
       AuthModule,
       WorkspaceModule,
+      SystemModule,
    ],
    controllers: [ApiGatewayController],
    providers: [ApiGatewayService],
