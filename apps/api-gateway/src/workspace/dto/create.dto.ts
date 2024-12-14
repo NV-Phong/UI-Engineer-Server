@@ -4,3 +4,11 @@ export class CreateTeamDTO {
    teamDescription: string;
    members: Array<{ IDUser: string }>;
 }
+
+export class CreateUILibraryDTO {
+   uiLibraryName: string;
+   uiLibraryDescription: string;
+   version: string;
+   IDTeam: string;
+   IDtechStacks: string[];
+}

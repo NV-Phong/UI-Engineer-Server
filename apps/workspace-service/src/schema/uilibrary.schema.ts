@@ -16,6 +16,9 @@ export class UILibrary {
    @Prop()
    isDeleted: boolean;
 
+   @Prop({ ref: 'Team' })
+   IDTeam: string;
+
    @Prop([{ type: String, ref: 'TechStack' }])
    techStacks: string[];
 }

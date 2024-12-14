@@ -1,4 +1,14 @@
 import { Controller } from '@nestjs/common';
+import { UilibraryService } from './uilibrary.service';
+import { MessagePattern, Payload } from '@nestjs/microservices';
+import { CreateUILibraryDTO } from './dto/create.dto';
 
-@Controller('uilibrary')
-export class UilibraryController {}
+@Controller()
+export class UilibraryController {
+   constructor(private readonly uilibraryservice: UilibraryService) {}
+
+   @MessagePattern('POST-uilibrary')
+   async CreateNewUILibrary(@Payload() createuilibraryDTO: CreateUILibraryDTO) {
+      return await this.uilibraryservice.CreateUILibrary(createuilibraryDTO);
+   }
+}

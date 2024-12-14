@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { UILibrary, UILibraryDocument } from '../schema/uilibrary.schema';
 import { Model } from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
+import { CreateUILibraryDTO } from './dto/create.dto';
 
 @Injectable()
 export class UilibraryService {
@@ -10,7 +11,12 @@ export class UilibraryService {
       private readonly techstackModel: Model<UILibraryDocument>,
    ) {}
 
-   async CreateUILibrary(): Promise<UILibrary> {
-      return;
+   async CreateUILibrary(
+      createuilibraryDTO: CreateUILibraryDTO,
+   ): Promise<UILibrary> {
+      return await new this.techstackModel({
+         ...createuilibraryDTO,
+         techStacks: createuilibraryDTO.IDtechStacks,
+      }).save();
    }
 }

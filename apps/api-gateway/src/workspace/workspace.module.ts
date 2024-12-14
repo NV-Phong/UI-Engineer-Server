@@ -1,10 +1,10 @@
 import { Module } from '@nestjs/common';
-import { WorkspaceController } from './workspace.controller';
 import { ApiGatewayService } from '../api-gateway.service';
 import { TeamController } from './team.controller';
+import { UILibraryController } from './uilibrary.controller';
 
 @Module({
-   controllers: [WorkspaceController, TeamController],
+   controllers: [TeamController, UILibraryController],
    providers: [ApiGatewayService],
 })
 export class WorkspaceModule {}
