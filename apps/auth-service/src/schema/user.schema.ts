@@ -19,7 +19,7 @@ export class User {
    @Prop()
    displayname: string;
 
-   @Prop({ unique: true })
+   @Prop()
    githubID: string;
 
    @Prop()

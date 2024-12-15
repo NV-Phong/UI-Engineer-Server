@@ -13,4 +13,9 @@ export class TeamController {
    ) {
       return await this.teamservice.CreateTeam(createteamDTO);
    }
+
+   @MessagePattern('GET-team-byIDUser')
+   async GetTeamByIDUser(@Payload() IDUser: string) {
+      return await this.teamservice.FindTeamByIDUser(IDUser);
+   }
 }

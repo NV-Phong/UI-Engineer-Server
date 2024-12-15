@@ -21,4 +21,13 @@ export class TeamService {
          })),
       }).save();
    }
+
+   async FindTeamByIDUser(IDUser: string) {
+      return await this.teamModel
+         .find({
+            'members.IDUser': IDUser,
+            isDeleted: false,
+         })
+         .exec();
+   }
 }

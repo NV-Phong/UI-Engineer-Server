@@ -1,4 +1,11 @@
-import { Body, Controller, Post, UseGuards, Request } from '@nestjs/common';
+import {
+   Body,
+   Controller,
+   Post,
+   UseGuards,
+   Request,
+   Get,
+} from '@nestjs/common';
 import { ApiGatewayService } from '../api-gateway.service';
 import { CreateTeamDTO } from './dto/create.dto';
 import { AuthGuard } from '@nestjs/passport';
@@ -16,5 +23,10 @@ export class TeamController {
             members: [{ IDUser: req.user.IDUser }],
          },
       });
+   }
+
+   @Get()
+   FindTeamByIDUser(@Request() req) {
+      return this.workspaceservice.send('GET-team-byIDUser', req.user.IDUser);
    }
 }

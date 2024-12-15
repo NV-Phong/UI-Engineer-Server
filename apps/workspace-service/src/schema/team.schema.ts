@@ -27,3 +27,4 @@ export class Team {
 }
 
 export const TeamSchema = SchemaFactory.createForClass(Team);
+TeamSchema.index({ 'members.IDUser': 1 });
