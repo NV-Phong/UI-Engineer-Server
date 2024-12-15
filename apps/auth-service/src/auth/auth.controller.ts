@@ -19,8 +19,8 @@ export class AuthController {
    }
 
    @MessagePattern('POST-refresh-token')
-   async RefreshToken(@Payload() refresh_token: string) {
-      return await this.authservice.RefreshAccessToken(refresh_token);
+   async RefreshToken(@Payload() refreshaccesstokenDTO: RefreshAccessTokenDTO) {
+      return await this.authservice.RefreshAccessToken(refreshaccesstokenDTO);
    }
 
    @MessagePattern('GET-login-github')

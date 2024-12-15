@@ -1,9 +1,12 @@
 import { Module } from '@nestjs/common';
 import { JwtModule } from '@nestjs/jwt';
 import { GithubStrategy } from 'apps/api-gateway/src/configuration/github.strategy';
-import { JwtStrategy } from 'apps/api-gateway/src/configuration/jwt.strategy';
+import {
+   JwtStrategy,
+} from 'apps/api-gateway/src/configuration/jwt.strategy';
 import { AuthController } from './auth.controller';
 import { ApiGatewayService } from '../api-gateway.service';
+import { RefreshTokenStrategy } from '../configuration/refresh-token.strategy';
 @Module({
    imports: [
       JwtModule.register({
@@ -12,6 +15,6 @@ import { ApiGatewayService } from '../api-gateway.service';
       }),
    ],
    controllers: [AuthController],
-   providers: [JwtStrategy, GithubStrategy, ApiGatewayService],
+   providers: [JwtStrategy, GithubStrategy, ApiGatewayService, RefreshTokenStrategy],
 })
 export class AuthModule {}

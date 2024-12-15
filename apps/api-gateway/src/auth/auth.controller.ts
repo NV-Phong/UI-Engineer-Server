@@ -11,9 +11,8 @@ import { Response } from 'express';
 import { RegisterDTO } from './dto/register.dto';
 import { ApiGatewayService } from '../api-gateway.service';
 import { LoginDTO } from './dto/login.dto';
-import { GithubAuthGuard } from 'apps/api-gateway/src/configuration/github-auth.guard';
 import { map } from 'rxjs/operators';
-
+import { AuthGuard } from '@nestjs/passport';
 @Controller('auth')
 export class AuthController {
    constructor(private readonly authservice: ApiGatewayService) {}
@@ -29,11 +28,11 @@ export class AuthController {
    }
 
    @Get('github')
-   @UseGuards(GithubAuthGuard)
+   @UseGuards(AuthGuard('github'))
    LoginGithub() {}
 
    @Get('github/callback')
-   @UseGuards(GithubAuthGuard)
+   @UseGuards(AuthGuard('github'))
    async LoginGithubCallBack(
       @Req() req,
       @Res({ passthrough: true }) res: Response,
@@ -52,8 +51,8 @@ export class AuthController {
    }
 
    @Post('refresh-token')
-   RefreshToken(@Body() payload: { refresh_token: string }) {
-      console.log('Received refresh token:', payload.refresh_token);
-      return this.authservice.send('POST-refresh-token', payload.refresh_token);
+   @UseGuards(AuthGuard('jwt-refresh'))
+   RefreshToken(@Req() req) {
+      return this.authservice.send('POST-refresh-token', req.user);
    }
 }

@@ -92,12 +92,18 @@ export class AuthService {
       });
    }
 
-   async RefreshAccessToken(refresh_token: string): Promise<TokenResponse> {
+   async RefreshAccessToken(
+      refreshaccesstokenDTO: RefreshAccessTokenDTO,
+   ): Promise<TokenResponse> {
       try {
-         const payload = this.jwtservice.verify(refresh_token, {
-            secret: process.env.REFRESH_TOKEN_SECRET,
-         });
-         const user = await this.userservice.FindByUserName(payload.username);
+         const user = await this.usermodel
+            .findById(refreshaccesstokenDTO.IDUser)
+            .exec();
+         if (!user) {
+            throw new RpcException(
+               `User with ID ${refreshaccesstokenDTO.IDUser} not found`,
+            );
+         }
          return { access_token: this.GenerateAccessToken(user) };
       } catch (error) {
          throw new RpcException({
