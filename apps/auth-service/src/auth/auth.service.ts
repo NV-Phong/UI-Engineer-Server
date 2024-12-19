@@ -60,7 +60,11 @@ export class AuthService {
    }
 
    GenerateAccessToken(user: User) {
-      const payload = { username: user.username, sub: user._id };
+      const payload = {
+         username: user.username,
+         sub: user._id,
+         email: user.email,
+      };
       return this.jwtservice.sign(payload, {
          secret: process.env.ACCESS_TOKEN_SECRET,
          expiresIn: process.env.ACCESS_TOKEN_EXPIRES_IN,
@@ -68,7 +72,11 @@ export class AuthService {
    }
 
    GenerateRefreshToken(user: User) {
-      const payload = { username: user.username, sub: user._id };
+      const payload = {
+         username: user.username,
+         sub: user._id,
+         email: user.email,
+      };
       return this.jwtservice.sign(payload, {
          secret: process.env.REFRESH_TOKEN_SECRET,
          expiresIn: process.env.REFRESH_TOKEN_EXPIRES_IN,
