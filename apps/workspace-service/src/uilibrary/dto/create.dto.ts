@@ -3,5 +3,6 @@ export class CreateUILibraryDTO {
    uiLibraryDescription: string;
    version: string;
    IDTeam: string;
+   style: string;
    IDtechStacks: string[];
 }

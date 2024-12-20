@@ -16,6 +16,9 @@ export class UILibrary {
    @Prop()
    isDeleted: boolean;
 
+   @Prop()
+   style: string;
+
    @Prop({ ref: 'Team' })
    IDTeam: string;
 

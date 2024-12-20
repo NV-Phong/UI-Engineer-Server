@@ -9,6 +9,7 @@ export class CreateUILibraryDTO {
    uiLibraryName: string;
    uiLibraryDescription: string;
    version: string;
+   style: string;
    IDTeam: string;
    IDtechStacks: string[];
 }
