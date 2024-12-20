@@ -11,4 +11,9 @@ export class UilibraryController {
    async CreateNewUILibrary(@Payload() createuilibraryDTO: CreateUILibraryDTO) {
       return await this.uilibraryservice.CreateUILibrary(createuilibraryDTO);
    }
+
+   @MessagePattern('GET-uilibrary')
+   async GetUILibrary(@Payload() IDTeam: string) {
+      return await this.uilibraryservice.FindUILibraryByIDTeam(IDTeam);
+   }
 }

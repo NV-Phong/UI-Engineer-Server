@@ -8,15 +8,22 @@ import { CreateUILibraryDTO } from './dto/create.dto';
 export class UilibraryService {
    constructor(
       @InjectModel(UILibrary.name)
-      private readonly techstackModel: Model<UILibraryDocument>,
+      private readonly uilibraryModel: Model<UILibraryDocument>,
    ) {}
 
    async CreateUILibrary(
       createuilibraryDTO: CreateUILibraryDTO,
    ): Promise<UILibrary> {
-      return await new this.techstackModel({
+      return await new this.uilibraryModel({
          ...createuilibraryDTO,
+         isDeleted: false,
          techStacks: createuilibraryDTO.IDtechStacks,
       }).save();
+   }
+
+   async FindUILibraryByIDTeam(idteam: string) {
+      return this.uilibraryModel
+         .find({ IDTeam: idteam, isDeleted: false })
+         .exec();
    }
 }
