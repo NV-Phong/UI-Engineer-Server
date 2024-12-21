@@ -18,6 +18,9 @@ export class Idea {
 
    @Prop()
    ideaImage: string;
+   
+   @Prop()
+   IDTeam: string;
 
    @Prop()
    isDeleted: boolean;

@@ -3,5 +3,6 @@ export class CreateIdeaDTO {
    ideaDescription: string;
    ideaType: string;
    ideaURL: string;
+   IDTeam: string;
    ideaImage: string;
 }
