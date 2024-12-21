@@ -14,7 +14,10 @@ export class Component {
    language: string;
 
    @Prop()
-   code: string;
+   codeHTML: string;
+
+   @Prop()
+   codeCSS: string;
 
    @Prop()
    idea: string[];
