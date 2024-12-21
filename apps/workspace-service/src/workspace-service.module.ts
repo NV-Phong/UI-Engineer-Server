@@ -6,6 +6,7 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { TeamModule } from './team/team.module';
 import { UilibraryModule } from './uilibrary/uilibrary.module';
 import { TechstackModule } from './techstack/techstack.module';
+import { IdeaModule } from './idea/idea.module';
 
 @Module({
    imports: [
@@ -20,6 +21,7 @@ import { TechstackModule } from './techstack/techstack.module';
       TeamModule,
       UilibraryModule,
       TechstackModule,
+      IdeaModule,
    ],
    controllers: [WorkspaceServiceController],
    providers: [WorkspaceServiceService],
