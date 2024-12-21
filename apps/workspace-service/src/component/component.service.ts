@@ -20,4 +20,8 @@ export class ComponentService {
       });
       return newComponent.save();
    }
+
+   async FindComponentByIDUILibrary(IDUILibrary: string): Promise<Component[]> {
+      return this.componentModel.find({ IDUILibrary, isDeleted: false }).exec();
+   }
 }

@@ -20,4 +20,9 @@ export class ComponentController {
    CreateNewUILibrary(@Body() createcomponentDTO: CreateComponentDTO) {
       return this.workspaceservice.send('POST-component', createcomponentDTO);
    }
+
+   @Get(':IDUILibrary')
+   GetComponentByIDUILibrary(@Param('IDUILibrary') IDUILibrary: string) {
+      return this.workspaceservice.send('GET-component', IDUILibrary);
+   }
 }

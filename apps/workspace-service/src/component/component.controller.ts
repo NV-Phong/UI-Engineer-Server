@@ -8,7 +8,12 @@ export class ComponentController {
    constructor(private readonly componentservice: ComponentService) {}
 
    @MessagePattern('POST-component')
-   async CreateNewIdea(@Payload() createcomponentDTO: CreateComponentDTO) {
+   async CreateNewComponent(@Payload() createcomponentDTO: CreateComponentDTO) {
       return await this.componentservice.CreateComponent(createcomponentDTO);
+   }
+
+   @MessagePattern('GET-component')
+   async GetComponentByIDUILibrary(@Payload() IDUILibrary: string) {
+      return await this.componentservice.FindComponentByIDUILibrary(IDUILibrary);
    }
 }
