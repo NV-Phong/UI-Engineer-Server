@@ -22,8 +22,7 @@ export class IdeaController {
    }
 
    @Get(':IDTeam')
-   GetIdeaByIDTeam(@Param('IDTeam') IDTeam:string) {
+   GetIdeaByIDTeam(@Param('IDTeam') IDTeam: string) {
       return this.workspaceservice.send('GET-idea', IDTeam);
    }
-
 }

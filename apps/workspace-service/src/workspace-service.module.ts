@@ -7,6 +7,7 @@ import { TeamModule } from './team/team.module';
 import { UilibraryModule } from './uilibrary/uilibrary.module';
 import { TechstackModule } from './techstack/techstack.module';
 import { IdeaModule } from './idea/idea.module';
+import { ComponentModule } from './component/component.module';
 
 @Module({
    imports: [
@@ -22,6 +23,7 @@ import { IdeaModule } from './idea/idea.module';
       UilibraryModule,
       TechstackModule,
       IdeaModule,
+      ComponentModule,
    ],
    controllers: [WorkspaceServiceController],
    providers: [WorkspaceServiceService],
