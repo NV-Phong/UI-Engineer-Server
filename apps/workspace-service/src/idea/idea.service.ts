@@ -10,11 +10,15 @@ export class IdeaService {
       @InjectModel(Idea.name) private ideaModel: Model<IdeaDocument>,
    ) {}
 
-   async createIdea(createIdeaDto: CreateIdeaDTO): Promise<Idea> {
+   async CreateIdea(createIdeaDto: CreateIdeaDTO): Promise<Idea> {
       const newIdea = new this.ideaModel({
          ...createIdeaDto,
          isDeleted: false,
       });
       return newIdea.save();
+   }
+
+   async FindIdeaByIDTeam(IDTeam: string): Promise<Idea[]> {
+      return this.ideaModel.find({ IDTeam, isDeleted: false }).exec();
    }
 }

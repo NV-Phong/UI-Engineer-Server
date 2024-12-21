@@ -21,4 +21,9 @@ export class IdeaController {
       return this.workspaceservice.send('POST-idea', createideaDTO);
    }
 
+   @Get(':IDTeam')
+   GetIdeaByIDTeam(@Param('IDTeam') IDTeam:string) {
+      return this.workspaceservice.send('GET-idea', IDTeam);
+   }
+
 }

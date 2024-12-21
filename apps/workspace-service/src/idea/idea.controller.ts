@@ -8,7 +8,12 @@ export class IdeaController {
    constructor(private readonly ideaservice: IdeaService) {}
 
    @MessagePattern('POST-idea')
-   async CreateNewTeam(@Payload() createIdeaDTO: CreateIdeaDTO) {
-      return await this.ideaservice.createIdea(createIdeaDTO);
+   async CreateNewIdea(@Payload() createIdeaDTO: CreateIdeaDTO) {
+      return await this.ideaservice.CreateIdea(createIdeaDTO);
+   }
+
+   @MessagePattern('GET-idea')
+   async GetIdeaByIDTeam(@Payload() IDTeam: string) {
+      return await this.ideaservice.FindIdeaByIDTeam(IDTeam);
    }
 }
